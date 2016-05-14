@@ -1,0 +1,14 @@
+.login-form-div .error-message{
+	width: 100%;
+	display: block;
+	padding:20px;
+	padding:40px 0px;
+}
+
+.login-form{
+	padding:20px 0px;	
+}
+
+.login-form .error{
+	color: red;
+}

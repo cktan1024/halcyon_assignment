@@ -17,10 +17,10 @@ Route::get('/', function () {
 
 
 Route::get('admin/login', array("as"=>"adminGetLogin", 'uses'=>"AdminController@getLogin"));
-Route::group(array('prefix'=>'admin','middleware' => ['auth']),function(){
-	Route::get('/',function(){
-		echo "admin View";
+Route::post('admin/login', array("as"=>"adminGetLogin", 'uses'=>"AdminController@postLogin"));
+
+Route::group(array('prefix'=>'admin','middleware' => ['auth','web']),function(){
+	Route::get('',function(){
+		return View('admin/home');
 	});
-
-
 });

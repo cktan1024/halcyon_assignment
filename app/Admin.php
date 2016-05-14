@@ -2,14 +2,15 @@
 
 namespace App;
 use Hash;
-use Illuminate\Database\Eloquent\Model;
+// use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Admin extends Model
+class Admin extends Authenticatable
 {
     //
     // Declare Tabe Admin
    	protected $table =  "admins";
-   	protected$primaryKey =  "admin_id";
+   	protected $primaryKey =  "admin_id";
 
    	function setPasswordAttribute($value){
    		$this->attributes['password'] =  Hash::make($value);
