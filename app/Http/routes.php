@@ -14,3 +14,13 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::get('admin/login', array("as"=>"adminGetLogin", 'uses'=>"AdminController@getLogin"));
+Route::group(array('prefix'=>'admin','middleware' => ['auth']),function(){
+	Route::get('/',function(){
+		echo "admin View";
+	});
+
+
+});
