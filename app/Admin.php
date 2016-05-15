@@ -11,8 +11,11 @@ class Admin extends Authenticatable
     // Declare Tabe Admin
    	protected $table =  "admins";
    	protected $primaryKey =  "admin_id";
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
 
-   	function setPasswordAttribute($value){
+   	protected function setPasswordAttribute($value){
    		$this->attributes['password'] =  Hash::make($value);
    	}
 }

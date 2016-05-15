@@ -25,7 +25,9 @@
     <div class="container">
         <div class="row">   
             <div class="login-form-div col-sx-8 col-xs-offset-2 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-6 col-md-offset-3"> 
-                <form action="login" class="login-form" method="post">
+                <form action="{{ route('adminPostLogin')}}" class="login-form" method="post">
+                <?php
+                 ?>
                 @if(Session::has('error'))
                     <div class="alert alert-danger alert-dismissible" role="alert">
                       <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -35,7 +37,7 @@
                     {{ csrf_field() }}
                     <div class="form-group">
                         <label for="email">Username:</label>
-                        <input class="form-control" type="email" id="email" name="email" placeholder="username@gmail.com | admin@admin.com">
+                        <input class="form-control" type="email" id="email" name="email" placeholder="username@gmail.com | admin@halcyon.com">
                         @if($errors->has('email'))
                             <span class="error">{{$errors->first('email')}}</span>
                         @endif

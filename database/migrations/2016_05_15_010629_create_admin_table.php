@@ -37,7 +37,10 @@ class CreateAdminTable extends Migration
      * @return void
      */
     public function down()
-    {
-        Schema::drop('admins');
+    {   
+        if(Schema::hasTable('admins')){
+            Schema::drop('admins');    
+        }
+        
     }
 }
