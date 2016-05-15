@@ -55,3 +55,21 @@
 .alert.transparent{
  	opacity: 0;
 }
+
+#restaurant-list thead,
+#restaurant-list tfoot{
+	text-transform: uppercase;	
+}
+
+#restaurant-list tr{
+	opacity: 1;
+	-webkit-transition: all .3s linear;
+	   -moz-transition: all .3s linear;
+	    -ms-transition: all .3s linear;
+	     -o-transition: all .3s linear;
+	        transition: all .3s linear;
+}
+
+#restaurant-list tr.deleted{
+	opacity: 0;
+}

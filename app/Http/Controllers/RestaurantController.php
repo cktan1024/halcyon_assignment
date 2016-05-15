@@ -10,6 +10,7 @@ use App\Http\Requests;
 use App\Restaurant;
 use App\Category;
 use View;
+use DB;
 
 
 class restaurantController extends Controller
@@ -18,13 +19,13 @@ class restaurantController extends Controller
     protected $table = 'restaurant';
 
     protected function getRestaurantsPage(){
-    	return View::make('admin/restaurantList');
+    	// $list = Restaurant::all()->toArray();
+        $list  = DB::table('restaurants')->leftJoin('category',function($join){
+            $join->on("restaurants.category_id","=",'category.category_id');
+        })->select('restaurants.*','category.name as category_name')->get();
+    	return View::make('admin/restaurantList',compact('list'));
     }
 
-    protected function getRestaurantList(){
-        $list = Restaurant::all();
-        return json_encode($list);
-    }
 
     // Get Add New Restaurant Page
     protected function getCreateRestaurant(){
@@ -38,8 +39,8 @@ class restaurantController extends Controller
             'name' => 'required',
             'description' => 'required',
             'category_id' => 'required|exists:category,category_id',
-            'lat' => 'required|between:-90,90',
-            'lng' => 'required|between:-180,180'
+            'lat' => 'required|numeric|min:-90|max:90',
+            'lng' => 'required|numeric|min:-180|max:180'
             );
 
         $validator  = Validator::make(Input::all(),$rules);
@@ -59,7 +60,7 @@ class restaurantController extends Controller
 
         }else{
             // print_r($validator->messages());
-            return Redirect::route('adminGetCreateRestaurant')->withErrors($validator)->withInput()->with('message',['error' => 'Failed to add new Restaurant']);
+            return Redirect::route('adminGetCreateRestaurant')->withErrors($validator)->withInput()->with('message',['warning' => 'Failed to add new Restaurant']);
         }
     }        
 
@@ -77,8 +78,8 @@ class restaurantController extends Controller
             'name' => 'required',
             'description' => 'required',
             'category_id' => 'required|exists:category,category_id',
-            'lat' => 'required|between:-90,90',
-            'lng' => 'required|between:-180,180'
+            'lat' => 'required|numeric|min:-90|max:90',
+            'lng' => 'required|numeric|min:-180|max:180'
             );
 
         $validator  = Validator::make(Input::all(),$rules);
@@ -98,8 +99,26 @@ class restaurantController extends Controller
 
         }else{
             // print_r($validator->messages());
-            return Redirect::route('adminGetEditRestaurant',[Input::get('restaurant_id')])->withErrors($validator)->withInput()->with('message',['error' => 'Failed to Edit Restaurant Information']);
+            return Redirect::route('adminGetEditRestaurant',[Input::get('restaurant_id')])->withErrors($validator)->withInput()->with('message',['warning' => 'Failed to Edit Restaurant Information']);
         }
     }     
 
+    //post Delete Restaurant
+    public function postDeleteRestaurant(){
+        $rules = array(
+            'restaurant_id' => 'required|exists:restaurants,restaurant_id',
+            );
+
+        $validator =  Validator::make(Input::all(),$rules);
+
+        if($validator->passes()){
+            $result['status'] = "200";
+            Restaurant::find(Input::get('restaurant_id'))->delete();
+        }else{            
+            $result['status'] = "401";
+            $result['error'] =  $validator->messages();
+        }
+
+        return json_encode($result);
+    }
 }
