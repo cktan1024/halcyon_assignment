@@ -12,15 +12,16 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+	$categoryList  = DB::table('category')->get();
+    return view('home',compact('categoryList'));
 });
+
+Route::get("restaurant/nearest",array('as'=>"getNearestRestaurant", "uses"=>"HomeController@getNearestRestaurant"));
+
 
 
 Route::get('admin/login', array("as"=>"adminGetLogin", 'uses'=>"AdminController@getLogin"));
 Route::post('admin/login', array("as"=>"adminPostLogin", 'uses'=>"AdminController@postLogin"));
-
-
-
 Route::group(array('prefix'=>'admin','middleware' => ['auth']),function(){
 	Route::get('',['as'=>'adminGetHomePage',  'uses' => 'AdminController@getHomePage']);
 

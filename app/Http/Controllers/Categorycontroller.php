@@ -38,7 +38,7 @@ class Categorycontroller extends Controller
 
     	if($validator->passes()){
     		$result['status'] = "200";
-    		// Category::where('category_id',"=",Input::get('category_id'))->delete();
+    		Category::where('category_id',"=",Input::get('category_id'))->delete();
     		$result['category_id'] = Input::get('category_id');
     	}else{
     		$result['status'] = "401";
