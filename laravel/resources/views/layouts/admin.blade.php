@@ -52,13 +52,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                   </button>
-                  <a class="navbar-brand" href="{{url('admin')}}">Halcyon</a>
+                  <a class="navbar-brand" href="{{route('adminGetHomePage')}}">Halcyon</a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                   <ul class="nav navbar-nav">
-                    <li><a href="/admin/restaurant">Restaurants</a></li>
+                    <li><a href="{{route('adminGetRestaurantList')}}">Restaurants</a></li>
                   </ul>
                   <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">

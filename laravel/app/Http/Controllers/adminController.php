@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests;
 use Auth;
-class adminController extends Controller
+class AdminController extends Controller
 {
     //
 

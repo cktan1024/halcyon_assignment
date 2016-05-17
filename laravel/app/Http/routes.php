@@ -25,7 +25,7 @@ Route::post('admin/login', array("as"=>"adminPostLogin", 'uses'=>"AdminControlle
 Route::group(array('prefix'=>'admin','middleware' => ['auth']),function(){
 	Route::get('',['as'=>'adminGetHomePage',  'uses' => 'AdminController@getHomePage']);
 
-	Route::get('restaurant', ["uses" => "RestaurantController@getRestaurantsPage"]);;
+	Route::get('restaurant', ["as"=>'adminGetRestaurantList', "uses" => "RestaurantController@getRestaurantsPage"]);;
 
 	//Add new Restaurant
 	Route::get('restaurant/create',array('as' => 'adminGetCreateRestaurant'  , 'uses'=>'RestaurantController@getCreateRestaurant'));
