@@ -1,0 +1,75 @@
+.login-form-div .error-message{
+	width: 100%;
+	display: block;
+	padding:20px;
+	padding:40px 0px;
+}
+
+.login-form{
+	padding:20px 0px;	
+}
+
+.login-form .error{
+	color: red;
+}
+
+.error-text{
+	color: red;
+}
+
+.admin-panel{
+	padding-top:40px;
+}
+
+.add-new-btn{
+	margin-bottom:20px;
+}
+
+#delete_category-btn{
+	color: red;
+}
+
+.alert{
+	opacity: 1;
+	-webkit-transition: all 0.25s ease-out;
+	   -moz-transition: all 0.25s ease-out;
+	    -ms-transition: all 0.25s ease-out;
+	     -o-transition: all 0.25s ease-out;
+	        transition: all 0.25s ease-out;
+}
+
+.message-div{
+	position: fixed;
+	top: 50px;
+	margin:0px auto;
+	width: 100%;
+	z-index: 999999;
+}
+
+.message-box{
+	min-width: 300px;
+	width: 50%;
+	margin: 0px auto;
+	text-align: center;
+}
+.alert.transparent{
+ 	opacity: 0;
+}
+
+#restaurant-list thead,
+#restaurant-list tfoot{
+	text-transform: uppercase;	
+}
+
+#restaurant-list tr{
+	opacity: 1;
+	-webkit-transition: all .3s linear;
+	   -moz-transition: all .3s linear;
+	    -ms-transition: all .3s linear;
+	     -o-transition: all .3s linear;
+	        transition: all .3s linear;
+}
+
+#restaurant-list tr.deleted{
+	opacity: 0;
+}
